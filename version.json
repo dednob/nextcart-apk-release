@@ -1,6 +1,6 @@
 {
-  "version": "2.0.1",
-  "build": 108,
+  "version": "2.0.2",
+  "build": 109,
   "min_build": 0,
-  "notes": "Free themes can now be applied to your online shop in one tap. Bug fixes and performance improvements."
+  "notes": "NextCart now lets you know when a new version is available. Bug fixes and performance improvements."
 }
