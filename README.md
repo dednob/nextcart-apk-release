@@ -13,3 +13,8 @@ than the installed build.
 
 It's updated automatically by the release workflow after each production
 upload. Raise `min_build` by hand to force an update.
+
+Every Play release also becomes a GitHub Release (tag `vX.Y.Z`) with
+`version.json` attached. The app reads
+`releases/latest/download/version.json`, so it only prompts after that
+Release is published.

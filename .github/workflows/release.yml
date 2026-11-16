@@ -1,0 +1,27 @@
+name: Publish release
+
+# next_cart's release workflow pushes version.json and a vX.Y.Z tag here after
+# a Google Play upload. The tag becomes a GitHub Release with version.json
+# attached, and the app reads
+# releases/latest/download/version.json, so users are only prompted once
+# that Release exists.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(jq -r .version version.json)
+          build=$(jq -r .build version.json)
+          jq -r .notes version.json > notes.md
+          gh release create "$GITHUB_REF_NAME" version.json --title "NextCart $version (build $build)" --notes-file notes.md --latest
